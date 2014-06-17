@@ -70,3 +70,11 @@ func (A *DenseMatrix) FillDiagonal(buf []float64) {
 		A.Set(i, i, buf[i])
 	}
 }
+
+func (A *DenseMatrix) Fill(val float64) {
+	for i := 0; i < A.rows; i++ {
+		for j := 0; j < A.cols; j++ {
+			A.Set(i, j, val)
+		}
+	}
+}
