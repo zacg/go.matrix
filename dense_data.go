@@ -4,6 +4,10 @@
 
 package matrix
 
+import (
+	"math"
+)
+
 //returns a copy of the row (not a slice)
 func (A *DenseMatrix) RowCopy(i int) []float64 {
 	row := make([]float64, A.cols)
@@ -77,4 +81,38 @@ func (A *DenseMatrix) Fill(val float64) {
 			A.Set(i, j, val)
 		}
 	}
+}
+
+//Returns the max value for each row
+func (A *DenseMatrix) MaxRows(val float64) []float64 {
+	result := make([]float64, A.Rows())
+
+	for i := 0; i < A.rows; i++ {
+		maxCol := -1 * math.MaxFloat64
+		for j := 0; j < A.cols; j++ {
+			if A.elements[i*A.step+j] > maxCol {
+				maxCol = A.elements[i*A.step+j]
+			}
+		}
+		result[i] = maxCol
+	}
+
+	return result
+}
+
+//Returns the max value for each column
+func (A *DenseMatrix) MaxCol(val float64) []float64 {
+	result := make([]float64, A.Cols())
+
+	for j := 0; j < A.cols; j++ {
+		maxRow := -1 * math.MaxFloat64
+		for i := 0; i < A.rows; i++ {
+			if A.elements[i*A.step+j] > maxRow {
+				maxRow = A.elements[i*A.step+j]
+			}
+		}
+		result[j] = maxRow
+	}
+
+	return result
 }
