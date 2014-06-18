@@ -84,7 +84,7 @@ func (A *DenseMatrix) Fill(val float64) {
 }
 
 //Returns the max value for each row
-func (A *DenseMatrix) MaxRows(val float64) []float64 {
+func (A *DenseMatrix) MaxRows() []float64 {
 	result := make([]float64, A.Rows())
 
 	for i := 0; i < A.rows; i++ {
@@ -101,7 +101,7 @@ func (A *DenseMatrix) MaxRows(val float64) []float64 {
 }
 
 //Returns the max value for each column
-func (A *DenseMatrix) MaxCols(val float64) []float64 {
+func (A *DenseMatrix) MaxCols() []float64 {
 	result := make([]float64, A.Cols())
 
 	for j := 0; j < A.cols; j++ {
@@ -119,7 +119,7 @@ func (A *DenseMatrix) MaxCols(val float64) []float64 {
 
 //Returns the index of max value for each column
 // (in case of duplicate max values first occurrence is used)
-func (A *DenseMatrix) ArgMaxCols(val float64) []int {
+func (A *DenseMatrix) ArgMaxCols() []int {
 	result := make([]int, A.Cols())
 
 	for j := 0; j < A.cols; j++ {
@@ -139,7 +139,7 @@ func (A *DenseMatrix) ArgMaxCols(val float64) []int {
 
 // Returns the index of max value for each row
 // (in case of duplicate max values first occurrence is used)
-func (A *DenseMatrix) ArgMaxRows(val float64) []int {
+func (A *DenseMatrix) ArgMaxRows() []int {
 	result := make([]int, A.Rows())
 
 	for i := 0; i < A.rows; i++ {
