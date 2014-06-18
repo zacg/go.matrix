@@ -123,6 +123,13 @@ func (A *DenseMatrix) Times(B MatrixRO) (Matrix, error) {
 	return C, nil
 }
 
+//Divides each matrix entry by specified value
+func (A *DenseMatrix) DivScaler(s float64) {
+	for idx, val := range A.elements {
+		A.elements[idx] = val / s
+	}
+}
+
 type parJob struct {
 	start, finish int
 }
@@ -245,8 +252,8 @@ func (A *DenseMatrix) TimesDenseFill(B, C *DenseMatrix) (err error) {
 		default:
 			for i := 0; i < A.rows; i++ {
 				sums := C.elements[i*C.step : (i+1)*C.step]
-				for k, a := range A.elements[i*A.step : i*A.step + A.cols] {
-					for j, b := range B.elements[k*B.step : k * B.step + B.cols] {
+				for k, a := range A.elements[i*A.step : i*A.step+A.cols] {
+					for j, b := range B.elements[k*B.step : k*B.step+B.cols] {
 						sums[j] += a * b
 					}
 				}
